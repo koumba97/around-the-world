@@ -4,16 +4,23 @@ import { useState } from 'react';
 import './style.scss';
 import { Input } from 'koum-ui';
 import { getCountryByName } from './api';
-import { Country } from './types/Countries';
+import { Country } from './types/Country';
+import { CountryCard } from './components/country-card/CountryCard';
 
 export default function Home() {
     const [countriesByName, setCountriesByName] = useState<Country[]>([]);
+    const [error, setError] = useState(false);
 
     const handleSearchBar = async (value: string) => {
         if (value) {
-            const countries = await getCountryByName(value);
-            setCountriesByName(countries);
-            console.log(countriesByName, 'ok');
+            const resp = await getCountryByName(value);
+            if (resp.success) {
+                setCountriesByName(resp.data);
+                console.log(countriesByName);
+                setError(false);
+            } else {
+                setError(true);
+            }
         } else {
             setCountriesByName([]);
         }
@@ -30,15 +37,13 @@ export default function Home() {
                     onChange={(val) => handleSearchBar(val as string)}
                 />
                 <div className="result-container">
-                    {Object.entries(countriesByName).map(([name, data]) => (
-                        <div key={name} className="country-card">
-                            <h3>Nom:{data.name.common}</h3>
-                            <p>Capital: {data.capital}</p>
-                            <p>
-                                Population: {data.population.toLocaleString()}
-                            </p>
-                        </div>
-                    ))}
+                    {!error ? (
+                        Object.entries(countriesByName).map(([name, data]) => (
+                            <CountryCard key={name} country={data} />
+                        ))
+                    ) : (
+                        <>Country not found</>
+                    )}
                 </div>
             </div>
         </div>
