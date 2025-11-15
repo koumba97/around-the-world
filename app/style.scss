@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Nunito';
+    src: url('./assets/fonts/nunito.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Nunito';
+}
+.project-container {
+    //background-color: rgb(215, 215, 215);
+    min-height: 100vh;
+    padding: 30px 50px;
+
+    .content-wrapper {
+        max-width: 700px;
+        margin: auto;
+
+        h1 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+    }
+}
