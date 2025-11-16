@@ -1,6 +1,29 @@
 .country-card {
-    border: solid;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.457);
+    overflow: hidden;
+    .card-image {
+        height: 150px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .card-info {
+        padding: 10px;
+        .country-name {
+            font-size: 18px;
+            text-align: left;
+            text-overflow: ellipsis;
+            width: 100%;
+            max-width: fit-content;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0;
+        }
+        .country-continent {
+            margin: 0;
+            width: max-content;
+        }
+    }
 }

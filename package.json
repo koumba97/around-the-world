@@ -10,7 +10,7 @@
         "pretty": "prettier --write \"app/**/*.{js,jsx,ts,tsx,json,css,scss,md,mdx}\""
     },
     "dependencies": {
-        "koum-ui": "^1.2.7",
+        "koum-ui": "^1.4.0",
         "next": "16.0.3",
         "prettier": "^3.6.2",
         "react": "19.2.0",
