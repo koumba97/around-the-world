@@ -8,6 +8,18 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
+        padding: 8px;
+        display: flex;
+        .labels-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: auto;
+            .country-continent,
+            .country-population {
+                width: max-content;
+            }
+        }
     }
     .card-info {
         padding: 10px;
@@ -20,10 +32,6 @@
             white-space: nowrap;
             overflow: hidden;
             margin: 0;
-        }
-        .country-continent {
-            margin: 0;
-            width: max-content;
         }
     }
 }

@@ -9,7 +9,7 @@ export type Continent =
     | 'SouthAmerica';
 
 export const ContinentColor = {
-    Africa: 'primary',
+    Africa: 'success',
     Asia: 'secondary',
     Europe: 'tertiary',
     NorthAmerica: 'info',

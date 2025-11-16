@@ -6,6 +6,9 @@ import { Input } from 'koum-ui';
 import { getCountryByName } from './api';
 import { Country } from './types/Country';
 import { CountryCard } from './components/country-card/CountryCard';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
 export default function Home() {
     const [countriesByName, setCountriesByName] = useState<Country[]>([]);
