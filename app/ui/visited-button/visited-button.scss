@@ -1,0 +1,30 @@
+.visited-button {
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    transition:
+        0.3s scale,
+        0.3s background-color,
+        0.3s width;
+    position: absolute;
+    cursor: pointer;
+    right: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    gap: 8px;
+    &:active {
+        scale: 0.8;
+    }
+    &:hover {
+        // background-color: rgb(230, 230, 230);
+        background-color: #1d1d1d;
+        color: white;
+        width: calc(100% - 20px);
+    }
+}

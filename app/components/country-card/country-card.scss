@@ -1,8 +1,10 @@
 .country-card {
     border-radius: 20px;
     width: 100%;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.457);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     overflow: hidden;
+    position: relative;
+
     .card-image {
         height: 150px;
         background-repeat: no-repeat;
@@ -10,6 +12,7 @@
         background-position: center;
         padding: 8px;
         display: flex;
+        position: relative;
         .labels-container {
             display: flex;
             flex-direction: column;
@@ -23,6 +26,8 @@
     }
     .card-info {
         padding: 10px;
+        display: grid;
+        gap: 4px;
         .country-name {
             font-size: 18px;
             text-align: left;
@@ -32,6 +37,24 @@
             white-space: nowrap;
             overflow: hidden;
             margin: 0;
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .country-capital {
+            grid-column: 1/2;
+            grid-row: 2;
+        }
+        .flag {
+            width: 30px;
+            height: 18px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            border-radius: 3px;
+            grid-column: 2;
+            grid-row: 1;
+            margin-left: auto;
+            position: relative;
         }
     }
 }

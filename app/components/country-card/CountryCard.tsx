@@ -4,6 +4,8 @@ import './country-card.scss';
 import { Continent, continentColorMap } from '@/app/types/ContinentColor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPerson } from '@fortawesome/free-solid-svg-icons';
+import { Tooltip } from 'react-tooltip';
+import { VisitedButton } from '@/app/ui/visited-button/VisitedButton';
 
 interface Prop {
     country: Country;
@@ -19,6 +21,7 @@ export const CountryCard = ({ country }: Prop) => {
                     backgroundImage: `url(/countries/${country.cca3}.jpg)`,
                 }}
             >
+                <VisitedButton />
                 <div className="labels-container">
                     <Label
                         additionalClass="country-continent"
@@ -33,10 +36,12 @@ export const CountryCard = ({ country }: Prop) => {
                             ]
                         }
                     ></Label>
+
                     <Label
                         size="small"
                         color="neutral"
                         additionalClass="country-population"
+                        id={`population-${country.name}`}
                     >
                         <FontAwesomeIcon
                             icon={faPerson}
@@ -49,9 +54,18 @@ export const CountryCard = ({ country }: Prop) => {
             </div>
             <div className="card-info">
                 <h1 className="country-name">{country.name.common}</h1>
-                <p style={{ color: KoumThemeColorHex.info }}>
+                <p
+                    className="country-capital"
+                    style={{ color: KoumThemeColorHex.info }}
+                >
                     {country.capital}
                 </p>
+                <div
+                    className="flag"
+                    style={{
+                        backgroundImage: `url(${country.flags.png})`,
+                    }}
+                ></div>
             </div>
         </div>
     );
