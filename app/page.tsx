@@ -15,6 +15,8 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEarthAmerica, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { NoCountry } from './components/no-country/NoCountry';
+import { NotFound } from './components/not-found/NotFound';
 config.autoAddCss = false;
 
 type Option = {
@@ -132,15 +134,18 @@ export default function Home() {
                         onChange={handleRegion}
                     />
                 </div>
-                <div className="result-container">
-                    {!error ? (
-                        Object.entries(countriesByName).map(([name, data]) => (
+
+                {error ? (
+                    <NotFound />
+                ) : countriesByName.length > 0 ? (
+                    <div className="result-container">
+                        {Object.entries(countriesByName).map(([name, data]) => (
                             <CountryCard key={name} country={data} />
-                        ))
-                    ) : (
-                        <>Country not found</>
-                    )}
-                </div>
+                        ))}
+                    </div>
+                ) : (
+                    <NoCountry />
+                )}
             </div>
         </div>
     );
