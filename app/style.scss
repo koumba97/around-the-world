@@ -9,7 +9,6 @@ body {
     font-family: 'Nunito';
 }
 .project-container {
-    //background-color: rgb(215, 215, 215);
     min-height: 100vh;
     padding: 30px 50px;
 
@@ -46,5 +45,61 @@ body {
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         margin-top: 40px;
+    }
+}
+
+@media (max-width: 800px) {
+    .project-container {
+        .content-wrapper {
+            .inputs-container {
+                display: grid;
+                gap: 10px;
+                .search-bar {
+                    grid-column: 1;
+                    grid-row: 1;
+                }
+                .region-selector {
+                    grid-column: 1;
+                    grid-row: 2;
+                    margin-left: unset;
+                    width: 100% !important;
+                    .koum-input {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+        .result-container {
+            display: grid;
+            position: relative;
+            z-index: -1;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .project-container {
+        padding: 30px 20px;
+        .content-wrapper {
+            .inputs-container {
+                .search-bar {
+                }
+                .region-selector {
+                    .koum-input {
+                    }
+                }
+            }
+        }
+        .result-container {
+            display: grid;
+            position: relative;
+            z-index: -1;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
     }
 }
