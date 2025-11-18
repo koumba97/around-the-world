@@ -12,16 +12,106 @@ export interface ApiSuccess<T> {
     data: T;
 }
 
-export async function getCountryByName(
-    name: string
-): Promise<ApiResponse<Country[]>> {
+export async function getAllCountries(): Promise<ApiResponse<Country[]>> {
     try {
+        console.log('in');
         const res = await fetch(
-            `https://restcountries.com/v3.1/name/${encodeURIComponent(name)}`
+            `https://restcountries.com/v3.1/all?fields=name`
         );
 
         if (!res.ok) {
-            //console.error('Country not found or API error', res.status);
+            return {
+                success: false,
+                status: res.status,
+            };
+        }
+
+        const data: any = await res.json();
+        console.log(data);
+        return {
+            success: true,
+            status: res.status,
+            data: data,
+        };
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return {
+            success: false,
+            status: 0,
+        };
+    }
+}
+
+export async function getCountryByName(
+    query: string
+): Promise<ApiResponse<Country[]>> {
+    try {
+        const res = await fetch(
+            `https://restcountries.com/v3.1/name/${encodeURIComponent(query)}`
+        );
+
+        if (!res.ok) {
+            return {
+                success: false,
+                status: res.status,
+            };
+        }
+
+        const data: any = await res.json();
+        return {
+            success: true,
+            status: res.status,
+            data: data,
+        };
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return {
+            success: false,
+            status: 0,
+        };
+    }
+}
+
+export async function getCountryByRegion(
+    region: string
+): Promise<ApiResponse<Country[]>> {
+    try {
+        const res = await fetch(
+            `https://restcountries.com/v3.1/region/${encodeURIComponent(region)}`
+        );
+
+        if (!res.ok) {
+            return {
+                success: false,
+                status: res.status,
+            };
+        }
+
+        const data: any = await res.json();
+        console.log(data);
+        return {
+            success: true,
+            status: res.status,
+            data: data,
+        };
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return {
+            success: false,
+            status: 0,
+        };
+    }
+}
+
+export async function getCountryBySubRegion(
+    subregion: string
+): Promise<ApiResponse<Country[]>> {
+    try {
+        const res = await fetch(
+            `https://restcountries.com/v3.1/subregion/${encodeURIComponent(subregion)}`
+        );
+
+        if (!res.ok) {
             return {
                 success: false,
                 status: res.status,

@@ -19,12 +19,11 @@
     font-weight: bold;
     gap: 8px;
     &:active {
-        scale: 0.8;
+        scale: 0.95;
     }
     &:hover {
-        // background-color: rgb(230, 230, 230);
         background-color: #1d1d1d;
         color: white;
-        width: calc(100% - 20px);
+        width: calc(100% - 60px);
     }
 }

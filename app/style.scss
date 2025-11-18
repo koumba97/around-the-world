@@ -23,10 +23,26 @@ body {
             margin-bottom: 20px;
             font-weight: bold;
         }
+
+        .inputs-container {
+            display: grid;
+
+            .search-bar {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            .region-selector {
+                grid-column: 2;
+                grid-row: 1;
+                margin-left: auto;
+            }
+        }
     }
 
     .result-container {
         display: grid;
+        position: relative;
+        z-index: -1;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         margin-top: 40px;

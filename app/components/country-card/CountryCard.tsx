@@ -25,11 +25,11 @@ export const CountryCard = ({ country }: Prop) => {
                 <div className="labels-container">
                     <Label
                         additionalClass="country-continent"
-                        label={country.continents[0]}
+                        label={country.continents?.[0] || ''}
                         size="small"
                         color={
                             continentColorMap[
-                                country.continents[0].replace(
+                                country.continents?.[0].replace(
                                     ' ',
                                     ''
                                 ) as Continent
@@ -63,7 +63,7 @@ export const CountryCard = ({ country }: Prop) => {
                 <div
                     className="flag"
                     style={{
-                        backgroundImage: `url(${country.flags.png})`,
+                        backgroundImage: `url(${country.flags?.png})`,
                     }}
                 ></div>
             </div>
