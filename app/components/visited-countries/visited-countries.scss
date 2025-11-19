@@ -1,0 +1,54 @@
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    transition: background-color 0.2s ease;
+}
+
+.visited-countries-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    display: grid;
+    grid-auto-rows: max-content;
+    overflow: auto;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: -20px;
+        z-index: 2;
+        background-color: white;
+        width: 100%;
+        padding-top: 20px;
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+}
+
+.countries-container {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    overflow: scroll;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 600px) {
+    .visited-countries-modal {
+        width: 90vw;
+    }
+    .countries-container {
+        grid-template-columns: 1fr;
+    }
+}

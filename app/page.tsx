@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import './style.scss';
-import { Input, Select } from 'koum-ui';
+import { Button, Input, Select } from 'koum-ui';
 import {
-    getAllCountries,
     getCountryByName,
     getCountryByRegion,
     getCountryBySubRegion,
@@ -18,6 +17,8 @@ import { faEarthAmerica, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { NoCountry } from './components/no-country/NoCountry';
 import Modal from 'react-modal';
 import { NotFound } from './components/not-found/NotFound';
+import { VisitedCountriesModal } from './components/visited-countries/VisitedCountries';
+import Pin from './svg/Pin';
 config.autoAddCss = false;
 
 type Option = {
@@ -31,6 +32,7 @@ export default function Home() {
     const [query, setQuery] = useState<string>('');
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [visitedCountriesIsOpen, setVisitedCountriesIsOpen] = useState(false);
 
     const RegionOptions: Option[] = [
         { label: 'Africa', value: 'africa' },
@@ -128,6 +130,20 @@ export default function Home() {
                             />
                         }
                     />
+                    <Button
+                        additionalClass="visited-countries-modal-button"
+                        label="Visited countries"
+                        size="small"
+                        onClick={() => setVisitedCountriesIsOpen(true)}
+                        iconPosition="right"
+                        icon={
+                            <Pin
+                                filled={false}
+                                isHovered={false}
+                                color="white"
+                            />
+                        }
+                    ></Button>
 
                     <Select
                         additionalClass="region-selector"
@@ -164,6 +180,11 @@ export default function Home() {
                 ) : (
                     <NoCountry />
                 )}
+
+                <VisitedCountriesModal
+                    isOpen={visitedCountriesIsOpen}
+                    closeModal={() => setVisitedCountriesIsOpen(false)}
+                />
             </div>
         </div>
     );

@@ -88,7 +88,7 @@ export async function getCountryByRegion(
         }
 
         const data: any = await res.json();
-        console.log(data);
+
         return {
             success: true,
             status: res.status,
@@ -109,6 +109,36 @@ export async function getCountryBySubRegion(
     try {
         const res = await fetch(
             `https://restcountries.com/v3.1/subregion/${encodeURIComponent(subregion)}`
+        );
+
+        if (!res.ok) {
+            return {
+                success: false,
+                status: res.status,
+            };
+        }
+
+        const data: any = await res.json();
+        return {
+            success: true,
+            status: res.status,
+            data: data,
+        };
+    } catch (error) {
+        console.error('Fetch error:', error);
+        return {
+            success: false,
+            status: 0,
+        };
+    }
+}
+
+export async function getCountryByCode(
+    code: string
+): Promise<ApiResponse<Country[]>> {
+    try {
+        const res = await fetch(
+            `https://restcountries.com/v3.1/alpha/${encodeURIComponent(code)}`
         );
 
         if (!res.ok) {

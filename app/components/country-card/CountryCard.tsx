@@ -110,7 +110,11 @@ export const CountryCard = ({ country, loading = false }: Prop) => {
             </div>
 
             {country && (
-                <CountryDetailsModal country={country} isOpen={modalIsOpen} />
+                <CountryDetailsModal
+                    country={country}
+                    isOpen={modalIsOpen}
+                    closeModal={() => setModalIsOpen(false)}
+                />
             )}
         </>
     );

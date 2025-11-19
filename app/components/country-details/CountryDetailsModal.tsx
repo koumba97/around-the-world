@@ -10,16 +10,15 @@ import {
     faLandmarkFlag,
     faPerson,
 } from '@fortawesome/free-solid-svg-icons';
-import { Button, Label } from 'koum-ui';
+import { Label } from 'koum-ui';
 import { Continent, continentColorMap } from '@/app/types/ContinentColor';
 import { ContryInfoObj } from '@/app/data/CountryInfo';
-import Pin from '@/app/svg/Pin';
 import { VisitedButton } from '@/app/ui/visited-button/VisitedButton';
 
 interface Prop {
     country: Country;
     isOpen: boolean;
-    visited?: boolean;
+    closeModal: () => void;
 }
 
 const Marker = ({
@@ -43,44 +42,19 @@ const Marker = ({
     />
 );
 
-export const CountryDetailsModal = ({
-    country,
-    isOpen,
-    visited = false,
-}: Prop) => {
+export const CountryDetailsModal = ({ country, isOpen, closeModal }: Prop) => {
     const commaNumber = require('comma-number');
     const [modalIsOpen, setModalIsOpen] = useState(isOpen);
-    const [isVisited, setIsVisited] = useState(visited);
-    const [visitedButtonIsHovered, setVisitedButtonIsHovered] = useState(false);
 
     useEffect(() => {
         setModalIsOpen(isOpen);
     }, [isOpen]);
 
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-        },
-    };
-
-    const defaultProps = {
-        center: {
-            lat: 10.99835602,
-            lng: 77.01502627,
-        },
-        zoom: 100,
-    };
     return (
         <Modal
             className="country-details-modal"
             isOpen={modalIsOpen}
-            onRequestClose={() => setModalIsOpen(false)}
-            style={customStyles}
+            onRequestClose={closeModal}
         >
             <div className="country-name-wrapper">
                 <FontAwesomeIcon
@@ -90,10 +64,7 @@ export const CountryDetailsModal = ({
                 />
                 <h2 className="country-name">{country.name.common}</h2>
             </div>
-            <button
-                className="close-button"
-                onClick={() => setModalIsOpen(false)}
-            >
+            <button className="close-button" onClick={closeModal}>
                 <CloseSVG width={20} height={20} viewBox="8 5 120 120" />
             </button>
             <div
