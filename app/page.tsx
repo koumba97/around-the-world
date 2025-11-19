@@ -16,6 +16,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEarthAmerica, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { NoCountry } from './components/no-country/NoCountry';
+import Modal from 'react-modal';
 import { NotFound } from './components/not-found/NotFound';
 config.autoAddCss = false;
 
@@ -39,6 +40,11 @@ export default function Home() {
         { label: 'Oceania', value: 'oceania' },
         { label: 'South America', value: 'south america' },
     ];
+
+    useEffect(() => {
+        Modal.setAppElement('body');
+    }, []);
+
     useEffect(() => {
         if (query !== '') {
             setRegion(undefined);
