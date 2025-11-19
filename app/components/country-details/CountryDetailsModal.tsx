@@ -10,12 +10,16 @@ import {
     faLandmarkFlag,
     faPerson,
 } from '@fortawesome/free-solid-svg-icons';
-import { Label } from 'koum-ui';
+import { Button, Label } from 'koum-ui';
 import { Continent, continentColorMap } from '@/app/types/ContinentColor';
+import { ContryInfoObj } from '@/app/data/CountryInfo';
+import Pin from '@/app/svg/Pin';
+import { VisitedButton } from '@/app/ui/visited-button/VisitedButton';
 
 interface Prop {
     country: Country;
     isOpen: boolean;
+    visited?: boolean;
 }
 
 const Marker = ({
@@ -36,14 +40,18 @@ const Marker = ({
             borderRadius: '50%',
             textAlign: 'center',
         }}
-    >
-        {text || '📍'}
-    </div>
+    />
 );
 
-export const CountryDetailsModal = ({ country, isOpen }: Prop) => {
+export const CountryDetailsModal = ({
+    country,
+    isOpen,
+    visited = false,
+}: Prop) => {
     const commaNumber = require('comma-number');
     const [modalIsOpen, setModalIsOpen] = useState(isOpen);
+    const [isVisited, setIsVisited] = useState(visited);
+    const [visitedButtonIsHovered, setVisitedButtonIsHovered] = useState(false);
 
     useEffect(() => {
         setModalIsOpen(isOpen);
@@ -65,7 +73,7 @@ export const CountryDetailsModal = ({ country, isOpen }: Prop) => {
             lat: 10.99835602,
             lng: 77.01502627,
         },
-        zoom: 11,
+        zoom: 100,
     };
     return (
         <Modal
@@ -124,6 +132,13 @@ export const CountryDetailsModal = ({ country, isOpen }: Prop) => {
                     </Label>
                 </div>
             </div>
+            <div className="country-description-container">
+                <h2 className="title">About this country</h2>
+                <p className="country-description">
+                    {ContryInfoObj[country.cca3]?.description}
+                </p>
+                <VisitedButton display="large" />
+            </div>
 
             <div className="country-bloc-info-wrapper">
                 <div className="country-capital single-info-bloc">
@@ -181,7 +196,8 @@ export const CountryDetailsModal = ({ country, isOpen }: Prop) => {
                 <GoogleMapReact
                     yesIWantToUseGoogleMapApiInternals
                     bootstrapURLKeys={{
-                        key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEYY,
+                        key: process.env
+                            .NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
                     }}
                     defaultCenter={{
                         lat: country.latlng[0],

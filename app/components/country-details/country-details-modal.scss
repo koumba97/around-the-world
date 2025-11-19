@@ -43,7 +43,6 @@
         grid-row: 2;
         background-size: cover;
         border-radius: 12px;
-        height: 200px;
         width: 300px;
         display: flex;
         padding: 8px;
@@ -55,6 +54,20 @@
             div {
                 width: max-content;
             }
+        }
+    }
+    .country-description-container {
+        grid-column: 1;
+        grid-row: 3;
+        display: flex;
+        flex-direction: column;
+        .title {
+            font-weight: bold;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .visited-button {
+            margin-top: auto;
         }
     }
     .country-bloc-info-wrapper {
@@ -96,7 +109,7 @@
                 text-align: center;
             }
             .population {
-                font-size: 18px;
+                font-size: 16px;
                 text-align: center;
             }
             .currency-sign {
@@ -145,5 +158,171 @@
         grid-row: 3;
         height: 180px;
         overflow: hidden;
+    }
+}
+
+@media (max-width: 650px) {
+    .country-details-modal {
+        width: 90vw;
+        max-height: 90vh;
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+
+        .country-name-wrapper {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+        .country-image {
+            grid-column: 1;
+            grid-row: 2;
+            width: 100%;
+            height: 100%;
+        }
+        .country-description-container {
+            grid-column: 2;
+            grid-row: 4;
+            display: flex;
+            flex-direction: column;
+            .title {
+                font-weight: bold;
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+            .visited-button {
+                margin-top: auto;
+            }
+        }
+        .country-map {
+            grid-row: 4;
+            grid-column: 1;
+            height: 20vh;
+        }
+        .close-button {
+            height: max-content;
+            grid-column: 2;
+            grid-row: 1;
+            margin-left: auto;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .country-details-modal {
+        width: 90vw;
+        max-height: 90vh;
+        grid-template-columns: 1fr;
+        height: auto;
+
+        .country-bloc-info-wrapper {
+            grid-row: 3;
+            grid-column: 1;
+            display: flex;
+            justify-content: space-between;
+            .single-info {
+                width: 100%;
+            }
+            .single-info-bloc {
+                .title {
+                    font-size: 12px;
+                }
+            }
+            .single-info-bloc,
+            .single-info {
+                border-radius: 12px;
+                height: 100%;
+                width: 100%;
+                max-width: 150px;
+                min-height: 80px;
+                overflow: hidden;
+
+                flex-direction: column;
+                justify-content: space-between;
+
+                .title {
+                    text-transform: uppercase;
+                    font-size: 8px;
+                    font-weight: 600;
+                    color: rgb(86, 86, 86);
+                }
+                &.country-population {
+                    display: none;
+                }
+                .icon {
+                    display: block;
+                    margin: auto;
+                    width: 100%;
+                    text-align: center;
+                }
+                .capital {
+                    font-weight: bold;
+                    font-size: 12px;
+                    text-align: center;
+                    width: 100%;
+                }
+                .population {
+                    font-size: 14px;
+                    text-align: center;
+                }
+                .currency-sign {
+                    font-weight: bold;
+                    font-size: 24px;
+                    text-align: center;
+                }
+                .currency-name {
+                    font-size: 12px;
+                    text-align: center;
+                }
+                .flag {
+                    width: 100%;
+                    height: 100%;
+                    align-self: center;
+                    margin: auto;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
+                    position: relative;
+                }
+            }
+            .single-info {
+                width: 100%;
+
+                background-position: center;
+                display: flex;
+            }
+        }
+        .country-name-wrapper {
+            grid-column: 1;
+        }
+        .country-image {
+            grid-column: 1;
+            grid-row: 2;
+            width: 100%;
+            height: 20vh;
+        }
+        .country-description-container {
+            grid-column: 1;
+            grid-row: 4;
+            display: flex;
+            flex-direction: column;
+            .title {
+                font-weight: bold;
+                font-size: 20px;
+                margin-bottom: 8px;
+            }
+            .visited-button {
+                margin-top: auto;
+            }
+        }
+        .country-map {
+            grid-row: 5;
+            grid-column: 1;
+            height: 20vh;
+        }
+        .close-button {
+            height: max-content;
+            grid-column: 1;
+            grid-row: 1;
+            margin-left: auto;
+        }
     }
 }
