@@ -5,6 +5,60 @@
     overflow: hidden;
     position: relative;
 
+    &.loading {
+        pointer-events: none;
+        user-select: none;
+        svg {
+            display: none;
+        }
+        .card-image {
+            background-color: rgb(194, 203, 208);
+            .country-continent {
+                height: 18px;
+                width: 70px !important;
+            }
+            .country-population {
+                height: 18px;
+                width: 100px !important;
+            }
+        }
+        .card-info {
+            .country-name {
+                background-color: #e2e5ea;
+                border-radius: 4px;
+                height: 20px;
+                width: 100px;
+                max-width: unset;
+            }
+            .country-capital {
+                background-color: #e2e5ea;
+                border-radius: 4px;
+                height: 20px;
+                width: 50px;
+                max-width: unset;
+            }
+            .flag {
+                background-color: #e2e5ea;
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            inset: 0;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.6) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: translateX(-30%);
+            animation: shimmer 1s infinite alternate;
+        }
+        opacity: 0.3;
+        animation: opacity 1s infinite alternate;
+    }
+
     .card-image {
         height: 150px;
         background-repeat: no-repeat;
@@ -13,6 +67,7 @@
         padding: 8px;
         display: flex;
         position: relative;
+
         .labels-container {
             display: flex;
             flex-direction: column;
@@ -57,5 +112,17 @@
             margin-left: auto;
             position: relative;
         }
+    }
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes opacity {
+    100% {
+        opacity: 0.8;
     }
 }

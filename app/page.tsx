@@ -29,6 +29,7 @@ export default function Home() {
     const [region, setRegion] = useState<Option | undefined>(undefined);
     const [query, setQuery] = useState<string>('');
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const RegionOptions: Option[] = [
         { label: 'Africa', value: 'africa' },
@@ -41,7 +42,6 @@ export default function Home() {
     useEffect(() => {
         if (query !== '') {
             setRegion(undefined);
-            console.log('ooo');
         }
     }, [query]);
     useEffect(() => {
@@ -52,6 +52,7 @@ export default function Home() {
     const handleSearchBar = async (value: string) => {
         setQuery(value);
         if (value) {
+            setLoading(true);
             const resp = await getCountryByName(value);
             if (resp.success) {
                 setCountriesByName(resp.data);
@@ -61,6 +62,7 @@ export default function Home() {
                 setError(true);
                 setCountriesByName([]);
             }
+            setLoading(false);
         } else {
             setCountriesByName([]);
         }
@@ -72,6 +74,7 @@ export default function Home() {
             region.value === 'north america' ||
             region.value === 'south america'
         ) {
+            setLoading(true);
             const resp = await getCountryBySubRegion(region.value);
             if (resp.success) {
                 setCountriesByName(resp.data);
@@ -81,7 +84,9 @@ export default function Home() {
                 setError(true);
                 setCountriesByName([]);
             }
+            setLoading(false);
         } else {
+            setLoading(true);
             const resp = await getCountryByRegion(region.value);
             if (resp.success) {
                 setCountriesByName(resp.data);
@@ -91,6 +96,7 @@ export default function Home() {
                 setError(true);
                 setCountriesByName([]);
             }
+            setLoading(false);
         }
     };
 
@@ -139,9 +145,15 @@ export default function Home() {
                     <NotFound />
                 ) : countriesByName.length > 0 ? (
                     <div className="result-container">
-                        {Object.entries(countriesByName).map(([name, data]) => (
-                            <CountryCard key={name} country={data} />
-                        ))}
+                        {!loading
+                            ? Object.entries(countriesByName).map(
+                                  ([name, data]) => (
+                                      <CountryCard key={name} country={data} />
+                                  )
+                              )
+                            : [...Array(9)].map((_, i) => (
+                                  <CountryCard key={i} loading />
+                              ))}
                     </div>
                 ) : (
                     <NoCountry />
