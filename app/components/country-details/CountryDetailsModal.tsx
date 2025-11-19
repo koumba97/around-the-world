@@ -133,11 +133,11 @@ export const CountryDetailsModal = ({
                 </div>
             </div>
             <div className="country-description-container">
-                <h2 className="title">About this country</h2>
+                <h2 className="title">About this country {country.cca3}</h2>
                 <p className="country-description">
                     {ContryInfoObj[country.cca3]?.description}
                 </p>
-                <VisitedButton display="large" />
+                <VisitedButton display="large" countryId={country.cca3} />
             </div>
 
             <div className="country-bloc-info-wrapper">

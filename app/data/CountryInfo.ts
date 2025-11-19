@@ -421,6 +421,12 @@ export const ContryInfoObj: Record<string, CountryInfo> = {
         description:
             'A country in South America with rainforests and a Caribbean coast.',
     },
+    HKG: {
+        name: 'Hong Kong',
+        cca3: 'HKG',
+        description:
+            'A vibrant Asian metropolis known for its skyline, bustling streets, cultural mix, and iconic Victoria Harbour.',
+    },
     HTI: {
         name: 'Haiti',
         cca3: 'HTI',

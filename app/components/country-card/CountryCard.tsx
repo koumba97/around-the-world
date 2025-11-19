@@ -38,7 +38,7 @@ export const CountryCard = ({ country, loading = false }: Prop) => {
                             : undefined,
                     }}
                 >
-                    <VisitedButton />
+                    {country && <VisitedButton countryId={country.cca3} />}
                     {!loading ? (
                         <div className="labels-container">
                             <Label
