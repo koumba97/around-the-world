@@ -22,6 +22,7 @@ body {
             font-size: 30px;
             margin-bottom: 20px;
             font-weight: bold;
+            color: black;
         }
 
         .inputs-container {
@@ -38,6 +39,9 @@ body {
                 grid-column: 3;
                 grid-row: 1;
                 margin-left: auto;
+                .option-content {
+                    color: black !important;
+                }
             }
             .visited-countries-modal-button {
                 grid-column: 4;
