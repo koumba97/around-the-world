@@ -104,10 +104,14 @@ export const CountryDetailsModal = ({ country, isOpen, closeModal }: Prop) => {
                 </div>
             </div>
             <div className="country-description-container">
-                <h2 className="title">About this country {country.cca3}</h2>
-                <p className="country-description">
-                    {ContryInfoObj[country.cca3]?.description}
-                </p>
+                {ContryInfoObj[country.cca3]?.description && (
+                    <>
+                        <h2 className="title">About this country</h2>
+                        <p className="country-description">
+                            {ContryInfoObj[country.cca3]?.description}
+                        </p>
+                    </>
+                )}
                 <VisitedButton display="large" countryId={country.cca3} />
             </div>
 
